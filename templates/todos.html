@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Build-a-Depressing-Blog</h1>
+
+    {% if tasks|length == 0 %}
+    <p>No blogs yet</p>
+    {% else %}
+        {% for task in tasks %}
+            <h1><a href="/blog?id={{task.id}}">{{task.title}}</a></h1>
+            <p>{{task.babblings}}</p>
+            <form method="POST" action="/delete">
+                <input type="hidden" name=task-id value="{{task.id}}" />
+                <input type="submit" value="delete!" />
+            </form>
+            <p>---------------------------------</p>
+        {% endfor %}
+
+    {% endif %}
+{% endblock %}

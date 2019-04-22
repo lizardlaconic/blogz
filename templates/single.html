@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Build-a-Depressing-Blog</h1>
+       
+    <h1>{{tasks.title}}</h1>
+    <p>{{tasks.babblings}}</p>
+    <form method="POST" action="/delete">
+    <input type="hidden" name=task-id value="{{tasks.id}}" />
+    <input type="submit" value="delete!" />
+    </form>
+       
+{% endblock %}

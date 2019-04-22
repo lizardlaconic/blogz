@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Create New Melodramatic Blog Entry</h1>
+    <form method='post'>
+        <label>
+            Depressing title for your new blog:<br/>
+            <input type="text" name='title' value={{title}} >
+        </label>
+        <br/><br/>
+        <label for="blog">Your new melodramatic blog (1,000 character limit):<br/></label>
+        <textarea id="blog" maxlength="1000" name="blog" rows="5" cols="30">{{blog}}</textarea>
+        <br/>
+        <p style="color:red;">
+        {% with messages = get_flashed_messages() %}
+            {% for message in messages %}
+                {{message}}<br/>
+            {% endfor %}
+        {% endwith %}
+        </p>
+        <br/><br/>
+        <input type="submit" value='Add Melodramatic Entry' />
+    </form>
+    <br/>
+    
+{% endblock %}
