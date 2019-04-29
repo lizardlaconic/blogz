@@ -4,8 +4,27 @@
         <title>build-a-blog</title>
     </head>
 <body>
-    <a href="/blog">Depressing Blog Page</a>&nbsp&nbsp&nbsp<a href="/newpost">Add a Depressing Blog Entry</a>
 
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        <ul style="color: red">
+            {% for category,message in messages %}
+                <li class="{{category}}">{{message}}</li>
+            {% endfor %}
+        </ul>
+    {% endwith %}
+
+    <a href="/">Home</a>
+    &nbsp&nbsp&nbsp
+    <a href="/blog">Depressing Blog Page</a>
+    &nbsp&nbsp&nbsp
+    <a href="/newpost">Add a Depressing Blog Entry</a>
+    {% if username %}
+        &nbsp&nbsp&nbsp    
+        <a style="color:red" href="/logout">LOGOUT {{username}}</a>
+    {% else %}
+        &nbsp&nbsp&nbsp    
+        <a style="color:red" href="/login">LOGIN</a>
+    {% endif %}
 
     {% block content %}
     {% endblock %}

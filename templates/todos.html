@@ -2,13 +2,18 @@
 
 {% block content %}
 <h1>Build-a-Depressing-Blog</h1>
+    {% if guy %}
+        <h1>{{guy}}</h1>
+    {% endif %}
+    
 
     {% if tasks|length == 0 %}
     <p>No blogs yet</p>
     {% else %}
         {% for task in tasks %}
             <h1><a href="/blog?id={{task.id}}">{{task.title}}</a></h1>
-            <p>{{task.babblings}}</p>
+            <p>{{task.babblings}}<br/>
+            written by: <a href="/blog?guy={{task.owner.id}}">{{task.owner.username}}</a></p>
             <form method="POST" action="/delete">
                 <input type="hidden" name=task-id value="{{task.id}}" />
                 <input type="submit" value="delete!" />
